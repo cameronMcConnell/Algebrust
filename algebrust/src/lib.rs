@@ -48,7 +48,7 @@ impl AlgebrustVector {
         AlgebrustVector { vector }
     }
 
-    pub fn substraction(&self, other: &AlgebrustVector) -> AlgebrustVector {
+    pub fn subtraction(&self, other: &AlgebrustVector) -> AlgebrustVector {
         assert_eq!(self.len(), other.len());
         let vector: Vec<f64> = self.vector
             .iter()
@@ -135,5 +135,63 @@ impl AlgebrustMatrix {
 
     pub fn matrix_ref(&self) -> &Vec<Vec<f64>> {
         &self.matrix
+    }
+
+    pub fn addition(&self, other: &AlgebrustMatrix) -> AlgebrustMatrix {
+        assert_eq!(self.size(), other.size());
+        let matrix: Vec<Vec<f64>> = self.matrix
+            .iter()
+            .zip(&other.matrix)
+            .map(|(vector1, vector2)| vector1
+                .iter()
+                .zip(vector2)
+                .map(|(a, b)| a + b)
+                .collect())
+            .collect();
+        AlgebrustMatrix { matrix }
+    }
+
+    pub fn subtraction(&self, other: &AlgebrustMatrix) -> AlgebrustMatrix {
+        assert_eq!(self.size(), other.size());
+        let matrix: Vec<Vec<f64>> = self.matrix
+            .iter()
+            .zip(&other.matrix)
+            .map(|(vector1, vector2)| vector1
+                .iter()
+                .zip(vector2)
+                .map(|(a, b)| a - b)
+                .collect())
+            .collect();
+        AlgebrustMatrix { matrix }
+    }
+
+    pub fn multiplication(&self, other: &AlgebrustMatrix) -> AlgebrustMatrix {
+        assert_eq!(self.size().1, other.size().0);
+        let mut matrix = vec![vec![0.0; other.size().1]; self.size().0];
+        for i in 0..self.size().0 {
+            for j in 0..other.size().1 {
+                matrix[i][j] = self.get_column(j, other)
+                    .iter()
+                    .zip(&self.matrix[i])
+                    .map(|(a, b)| a * b)
+                    .sum();
+            }
+        }
+        AlgebrustMatrix { matrix }
+    }
+
+    fn get_column(&self, column_index: usize, other: &AlgebrustMatrix) -> Vec<f64> {
+        other.matrix.iter().map(|row| row[column_index]).collect()
+    }
+
+    pub fn scalar_multiplication(&self, scaler: f64) -> AlgebrustMatrix {
+        let matrix: Vec<Vec<f64>> = self.matrix
+            .iter()
+            .map(|vector| vector
+                .iter()
+                .map(|a| a * scaler)
+                .collect())
+            .collect();
+        AlgebrustMatrix { matrix }
     }
 }
