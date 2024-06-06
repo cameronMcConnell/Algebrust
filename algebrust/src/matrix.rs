@@ -29,7 +29,7 @@ impl AlgebrustMatrix {
         AlgebrustMatrix { matrix }
     }
 
-    pub fn new_identity(&self, n: usize) -> Self {
+    pub fn new_identity(n: usize) -> Self {
         let matrix = Self::get_identity_matrix(n);
         AlgebrustMatrix { matrix }
     }
