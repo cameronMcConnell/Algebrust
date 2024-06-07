@@ -1,7 +1,11 @@
 [package]
 name = "algebrust"
 version = "0.1.0"
+authors = ["Cameron McConnell cameron.mcconne@gmail.com"]
 edition = "2021"
+description = "A Rust library for basic linear algebra operations."
+license = "MIT"
+repository = "https://github.com/cameronMcConnell/Algebrust"
 
 [dependencies]
 rand = "0.8.5"
