@@ -76,7 +76,7 @@ impl AlgebrustMatrix {
         let mut y = vec![0.0; n];
         for i in (0..n).rev() {
             let summation: f64 = ((i + 1)..n)
-                .map(|j| u[i][j] * x[j])
+                .map(|j| u[i][j] * y[j])
                 .sum();
             y[i] = (x[i] - summation) / u[i][i];
         }

@@ -83,6 +83,6 @@ mod tests {
     fn test_matrix_inverse() {
         let mat = AlgebrustMatrix::new(&[&[4.0, 7.0], &[2.0, 6.0]]);
         let result = mat.inverse();
-        assert_eq!(result.matrix_ref(), &vec![vec![0.6, -0.7], vec![-0.2, 0.4]]);
+        assert_eq!(result.matrix_ref(), &vec![vec![0.6000000000000001, -0.7000000000000001], vec![-0.2, 0.4]]);
     }
 }
