@@ -6,6 +6,7 @@ edition = "2021"
 description = "A Rust library for basic linear algebra operations."
 license = "MIT"
 repository = "https://github.com/cameronMcConnell/Algebrust"
+readme = "README.md"
 
 [dependencies]
 rand = "0.8.5"
