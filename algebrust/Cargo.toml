@@ -1,6 +1,6 @@
 [package]
 name = "algebrust"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Cameron McConnell cameron.mcconne@gmail.com"]
 edition = "2021"
 description = "A Rust library for basic linear algebra operations."
